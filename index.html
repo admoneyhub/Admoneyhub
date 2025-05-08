@@ -4,24 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AdmoneyHub - Spin & Earn</title>
+  <title>AdmoneyHub - Reels</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
-    header, footer { background: #222; color: #fff; padding: 10px 20px; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; }
-    .spin-section { margin: 50px auto; text-align: center; }
-    .spin-wheel {
-      width: 200px; height: 200px;
-      margin: 20px auto;
-      border: 10px dashed #333;
-      border-radius: 50%;
-      background: #fff;
-      font-size: 2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    header, footer { background: #222; color: white; padding: 15px; text-align: center; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    .reels-section { padding: 20px; max-width: 600px; margin: auto; }
+    .reel { background: #fff; padding: 15px; margin: 15px 0; border-radius: 10px; box-shadow: 0 0 5px #ccc; }
+    .actions { margin-top: 10px; }
+    .actions button { margin-right: 10px; }
+    .upload { margin: 20px 0; padding: 10px; background: #fff; border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -36,10 +28,27 @@
     </nav>
   </header>
 
-  <div class="spin-section">
-    <h2>Spin & Earn Coins</h2>
-    <div class="spin-wheel" onclick="spin()">SPIN</div>
-    <p id="result"></p>
+  <div class="reels-section">
+    <h2>Upload a Reel</h2>
+    <div class="upload">
+      <input type="file" id="reelFile"><br><br>
+      <button onclick="uploadReel()">Upload</button>
+      <p id="uploadStatus"></p>
+    </div>
+
+    <div id="reels">
+      <div class="reel">
+        <video width="100%" controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="actions">
+          <button onclick="like()">Like (<span id="likeCount">0</span>)</button>
+          <input type="text" id="commentBox" placeholder="Add a comment...">
+          <button onclick="comment()">Comment</button>
+          <p id="commentList"></p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -47,9 +56,21 @@
   </footer>
 
   <script>
-    function spin() {
-      const coins = Math.floor(Math.random() * 100) + 1;
-      document.getElementById("result").innerText = "You earned " + coins + " coins!";
+    let likes = 0;
+    function like() {
+      likes++;
+      document.getElementById("likeCount").innerText = likes;
+    }
+    function comment() {
+      let box = document.getElementById("commentBox");
+      let list = document.getElementById("commentList");
+      if(box.value) {
+        list.innerHTML += "<br>" + box.value;
+        box.value = "";
+      }
+    }
+    function uploadReel() {
+      document.getElementById("uploadStatus").innerText = "Reel uploaded (demo only)";
     }
   </script>
 </body>
