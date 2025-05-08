@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AdmoneyHub - Spin & Earn</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+    header, footer { background: #222; color: #fff; padding: 10px 20px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; }
+    .spin-section { margin: 50px auto; text-align: center; }
+    .spin-wheel {
+      width: 200px; height: 200px;
+      margin: 20px auto;
+      border: 10px dashed #333;
+      border-radius: 50%;
+      background: #fff;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AdmoneyHub</h1>
+    <nav>
+      <a href="#">Spin</a>
+      <a href="#">Reels</a>
+      <a href="#">Games</a>
+      <a href="#">Chat</a>
+      <a href="#">Withdraw</a>
+    </nav>
+  </header>
+
+  <div class="spin-section">
+    <h2>Spin & Earn Coins</h2>
+    <div class="spin-wheel" onclick="spin()">SPIN</div>
+    <p id="result"></p>
+  </div>
+
+  <footer>
+    &copy; 2025 AdmoneyHub. All rights reserved.
+  </footer>
+
+  <script>
+    function spin() {
+      const coins = Math.floor(Math.random() * 100) + 1;
+      document.getElementById("result").innerText = "You earned " + coins + " coins!";
+    }
+  </script>
+</body>
+</html>
